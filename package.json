@@ -1,0 +1,8 @@
+{
+  "name": "shareddit-discord",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "repository": "git@github.com:logankuzyk/shareddit-discord",
+  "author": "Logan Kuzyk <logan@kuzyk.net>",
+  "license": "MIT"
+}
