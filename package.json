@@ -5,6 +5,10 @@
   "repository": "git@github.com:logankuzyk/shareddit-discord",
   "author": "Logan Kuzyk <logan@kuzyk.net>",
   "license": "MIT",
+  "scripts": {
+    "start": "ts-node src/",
+    "dev": "nodemon ./src/index.ts"
+  },
   "dependencies": {
     "@discordjs/rest": "^0.3.0",
     "axios": "^0.26.0",
