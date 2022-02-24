@@ -4,5 +4,14 @@
   "main": "src/index.ts",
   "repository": "git@github.com:logankuzyk/shareddit-discord",
   "author": "Logan Kuzyk <logan@kuzyk.net>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@discordjs/rest": "^0.3.0",
+    "discord-api-types": "^0.27.2",
+    "discord.js": "^13.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.21",
+    "dotenv": "^16.0.0"
+  }
 }
