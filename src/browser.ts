@@ -39,6 +39,7 @@ export class Browser {
             height: 2280,
           },
           args: ["--no-sandbox", "--disable-setuid-sandbox"],
+          executablePath: "/snap/bin/chromium",
         });
         this.status = "running";
         console.log("Browser started!");
@@ -66,8 +67,6 @@ export class Browser {
       throw Error("Browser is not running");
     }
 
-    const label = "time";
-    console.time(label);
     const origin = "https://shareddit.com";
     const page = await this.instance.newPage();
     await page.goto(`${origin}${path}`, {
@@ -82,7 +81,6 @@ export class Browser {
 
     const b64 = data.split(",")[1];
     const buf = Buffer.from(b64, "base64");
-    console.timeEnd(label);
 
     return buf;
   };
