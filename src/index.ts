@@ -43,6 +43,8 @@ const commands: ApplicationCommandData[] = [
 bot.on("interactionCreate", async (interaction: Interaction) => {
   if (!interaction.isCommand()) return;
 
+  const label = "time";
+  console.time(label);
   await interaction.reply("Loading...");
   const inputUrl = interaction.options.data[0].value! as string;
   console.log(`Received ${inputUrl}`);
@@ -68,6 +70,7 @@ bot.on("interactionCreate", async (interaction: Interaction) => {
         },
       ],
     });
+    console.timeEnd(label);
   } catch (error: any) {
     if (error.code && error.code === "ERR_INVALID_URL") {
       console.log("Invalid URL");
