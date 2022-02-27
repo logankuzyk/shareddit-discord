@@ -9,6 +9,10 @@ import axiosRetry from "axios-retry";
 
 require("dotenv").config();
 
+import { Browser } from "./browser";
+
+const browser = new Browser();
+
 axiosRetry(axios, {
   retries: 2,
   // TypeScript didn't like me returning the condition directly.
@@ -53,12 +57,7 @@ bot.on("interactionCreate", async (interaction: Interaction) => {
     const redditUrl = new URL(inputUrl);
     const path = redditUrl.pathname;
 
-    const req = await axios.get<string>(
-      `${process.env.RENDER_ENDPOINT!}?redditPath=${path}`
-    );
-    const { data } = req;
-    const b64 = data.split(",")[1];
-    const buf = Buffer.from(b64, "base64");
+    const buf = await browser.generate(path);
     console.log("Image generated!");
     interaction.editReply({
       content: "Image generated!",
@@ -75,12 +74,6 @@ bot.on("interactionCreate", async (interaction: Interaction) => {
     if (error.code && error.code === "ERR_INVALID_URL") {
       console.log("Invalid URL");
       await interaction.editReply(`\`${inputUrl}\` is not a valid reddit URL`);
-    } else if (error.response && error.response.status === 502) {
-      // Cloud function timed out or isn't working.
-      console.error("Cloud function 502");
-      await interaction.editReply(
-        "The shareddit server doesn't seem to be working."
-      );
     } else {
       console.error(error);
       await interaction.editReply(`Something went wrong. \`${error.message}\``);
@@ -99,6 +92,10 @@ bot.on("guildCreate", async (guild) => {
   } catch (error) {
     console.error(error);
   }
+});
+
+bot.on("ready", async () => {
+  await browser.start();
 });
 
 bot.login(process.env.TOKEN!);
