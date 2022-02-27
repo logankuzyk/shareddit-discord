@@ -6,6 +6,7 @@ RUN apt update
 RUN apt upgrade -y
 RUN apt install -y \
     ca-certificates \
+    fonts-noto-color-emoji \
     fonts-liberation \
     libappindicator3-1 \
     libasound2 \
