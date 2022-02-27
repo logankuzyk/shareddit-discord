@@ -38,8 +38,12 @@ export class Browser {
             width: 1080,
             height: 2280,
           },
-          args: ["--no-sandbox", "--disable-setuid-sandbox"],
-          executablePath: "/snap/bin/chromium",
+          args: [
+            "--no-sandbox",
+            "--disable-setuid-sandbox",
+            "--disable-gpu",
+            "--disable-dev-shm-usage",
+          ],
         });
         this.status = "running";
         console.log("Browser started!");
