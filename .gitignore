@@ -9,4 +9,4 @@
 !.yarn/versions
 
 node_modules/
-.env
+*.env
