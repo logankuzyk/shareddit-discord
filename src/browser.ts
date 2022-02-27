@@ -38,6 +38,7 @@ export class Browser {
             width: 1080,
             height: 2280,
           },
+          args: ["--no-sandbox", "--disable-setuid-sandbox"],
         });
         this.status = "running";
         console.log("Browser started!");
